@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.bumptech.glide.Glide
 import com.example.rickandmortyapikotlin.R
 import com.example.rickandmortyapikotlin.databinding.FragmentCharacterDetailBinding
 
@@ -21,8 +22,11 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
     }
 
     private fun getData() {
-        viewModel.fetchCharactersId(args.position).observe(viewLifecycleOwner) {characterDetail ->
+        viewModel.fetchCharactersId(args.position).observe(viewLifecycleOwner) { characterDetail ->
             viewBinding.characterDetailName.text = characterDetail.name
+            Glide.with(viewBinding.characterImAva)
+                .load(characterDetail.image)
+                .into(viewBinding.characterImAva)
         }
     }
 }

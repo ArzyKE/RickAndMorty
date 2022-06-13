@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.rickandmortyapikotlin.databinding.ItemCharacterBinding
 import com.example.rickandmortyapikotlin.model.CharacterModel
 
@@ -44,6 +45,9 @@ class CharacterAdapter(
 
         fun onBind(item: CharacterModel?) {
             binding.itemCharacterName.text = item?.name
+            Glide.with(binding.imAva).load(item?.image)
+                .into(binding.imAva)
+
         }
     }
 
