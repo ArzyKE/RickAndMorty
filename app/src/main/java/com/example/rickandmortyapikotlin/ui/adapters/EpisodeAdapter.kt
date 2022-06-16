@@ -9,7 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmortyapikotlin.databinding.ItemEpisodeBinding
 import com.example.rickandmortyapikotlin.model.EpisodeModel
 
-class EpisodeAdapter : ListAdapter<EpisodeModel, EpisodeAdapter.ViewHolder>(diffCallback) {
+class EpisodeAdapter(
+
+    private val itemClick: (id: Int) -> Unit
+
+) : ListAdapter<EpisodeModel, EpisodeAdapter.ViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -29,6 +33,14 @@ class EpisodeAdapter : ListAdapter<EpisodeModel, EpisodeAdapter.ViewHolder>(diff
         private val binding: ItemEpisodeBinding
     ) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                getItem(absoluteAdapterPosition).apply {
+                    itemClick(id)
+                }
+            }
+        }
 
         fun onBind(item: EpisodeModel?) {
             binding.itemEpisodeName.text = item?.name

@@ -47,7 +47,6 @@ class CharacterAdapter(
             binding.itemCharacterName.text = item?.name
             Glide.with(binding.imAva).load(item?.image)
                 .into(binding.imAva)
-
         }
     }
 

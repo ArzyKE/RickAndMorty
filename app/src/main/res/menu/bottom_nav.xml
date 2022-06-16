@@ -13,5 +13,4 @@
         android:id="@+id/episodeFragment"
         android:icon="@drawable/ic_baseline_wb_sunny_24"
         android:title="@string/episode"/>
-
 </menu>

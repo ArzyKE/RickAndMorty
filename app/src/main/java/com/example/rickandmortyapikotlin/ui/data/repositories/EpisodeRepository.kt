@@ -9,30 +9,45 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class EpisodeRepository {
-//
-//    val data: MutableLiveData<RickyMortyResponse<EpisodeModel>> = MutableLiveData()
-//
-//    fun fetchEpisode(): MutableLiveData<RickyMortyResponse<EpisodeModel>> {
-//        val data: MutableLiveData<RickyMortyResponse<EpisodeModel>> = MutableLiveData()
-//        App.episodeApiServices?.fetchEpisode()
-//            ?.enqueue(object : Callback<RickyMortyResponse<EpisodeModel>> {
-//                override fun onResponse(
-//                    call: Call<RickyMortyResponse<EpisodeModel>>,
-//                    response: Response<RickyMortyResponse<EpisodeModel>>
-//                ) {
-//                    if (response.body() != null)
-//                        data.value = response.body()
-//                }
-//
-//                override fun onFailure(
-//                    call: Call<RickyMortyResponse<EpisodeModel>>,
-//                    t: Throwable
-//                ) {
-//                    data.value = null
-//                }
-//
-//            })
-//        return data
-//    }
 
+    val data: MutableLiveData<RickyMortyResponse<EpisodeModel>> = MutableLiveData()
+
+    fun fetchEpisode(): MutableLiveData<RickyMortyResponse<EpisodeModel>> {
+        val data: MutableLiveData<RickyMortyResponse<EpisodeModel>> = MutableLiveData()
+        App.episodeApiServices?.fetchEpisode()
+            ?.enqueue(object : Callback<RickyMortyResponse<EpisodeModel>> {
+                override fun onResponse(
+                    call: Call<RickyMortyResponse<EpisodeModel>>,
+                    response: Response<RickyMortyResponse<EpisodeModel>>
+                ) {
+                    if (response.body() != null)
+                        data.value = response.body()
+                }
+
+                override fun onFailure(
+                    call: Call<RickyMortyResponse<EpisodeModel>>,
+                    t: Throwable
+                ) {
+                    data.value = null
+                }
+            })
+        return data
+    }
+
+    fun fetchEpisodeId(id: Int): MutableLiveData<EpisodeModel> {
+        val data: MutableLiveData<EpisodeModel> = MutableLiveData()
+        App.episodeApiServices?.episodeId(id)?.enqueue(object : Callback<EpisodeModel> {
+            override fun onResponse(
+                call: Call<EpisodeModel>,
+                response: Response<EpisodeModel>
+            ) {
+                data.value = response.body()
+            }
+
+            override fun onFailure(call: Call<EpisodeModel>, t: Throwable) {
+                data.value = null
+            }
+        })
+        return data
+    }
 }

@@ -9,28 +9,42 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LocationRepository {
-//
-//    val data: MutableLiveData<RickyMortyResponse<LocationModel>> = MutableLiveData()
-//
-//    fun fetchLocation(): MutableLiveData<RickyMortyResponse<LocationModel>> {
-//        val data: MutableLiveData<RickyMortyResponse<LocationModel>> = MutableLiveData()
-//        App.locationApiServices?.fetchLocation()
-//            ?.enqueue(object : Callback<RickyMortyResponse<LocationModel>> {
-//                override fun onResponse(
-//                    call: Call<RickyMortyResponse<LocationModel>>,
-//                    response: Response<RickyMortyResponse<LocationModel>>
-//                ) {
-//                    if (response.body() != null)
-//                        data.value = response.body()
-//                }
-//
-//                override fun onFailure(
-//                    call: Call<RickyMortyResponse<LocationModel>>,
-//                    t: Throwable
-//                ) {
-//                    data.value = null
-//                }
-//            })
-//        return data
-//    }
+
+    val data: MutableLiveData<RickyMortyResponse<LocationModel>> = MutableLiveData()
+
+    fun fetchLocation(): MutableLiveData<RickyMortyResponse<LocationModel>> {
+        val data: MutableLiveData<RickyMortyResponse<LocationModel>> = MutableLiveData()
+        App.locationApiServices?.fetchLocation()
+            ?.enqueue(object : Callback<RickyMortyResponse<LocationModel>> {
+                override fun onResponse(
+                    call: Call<RickyMortyResponse<LocationModel>>,
+                    response: Response<RickyMortyResponse<LocationModel>>
+                ) {
+                    if (response.body() != null)
+                        data.value = response.body()
+                }
+
+                override fun onFailure(
+                    call: Call<RickyMortyResponse<LocationModel>>,
+                    t: Throwable
+                ) {
+                    data.value = null
+                }
+            })
+        return data
+    }
+
+    fun fetchLocationId(id: Int): MutableLiveData<LocationModel> {
+        val data: MutableLiveData<LocationModel> = MutableLiveData()
+        App.locationApiServices?.fetchLocationId(id)?.enqueue(object : Callback<LocationModel> {
+            override fun onResponse(call: Call<LocationModel>, response: Response<LocationModel>) {
+                data.value = response.body()
+            }
+
+            override fun onFailure(call: Call<LocationModel>, t: Throwable) {
+                data.value = null
+            }
+        })
+        return data
+    }
 }

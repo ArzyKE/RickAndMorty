@@ -11,8 +11,8 @@ interface EpisodeApiServices {
     @GET("api/episode")
     fun fetchEpisode(): Call<RickyMortyResponse<EpisodeModel>>
 
-//    @GET("api/episode/{id}")
-//    fun episodeId(
-//        @Path("id") id: Int
-//    ): Call<EpisodeModel>
+    @GET("api/episode/{id}")
+    fun episodeId(
+        @Path("id") id: Int
+    ): Call<EpisodeModel>
 }

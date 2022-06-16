@@ -11,8 +11,8 @@ interface LocationApiServices {
     fun fetchLocation():
             Call<RickyMortyResponse<LocationModel>>
 
-//    @GET("api/location/{id}")
-//    fun fetchLocationId(
-//        @Path("id") id: Int
-//    ): Call<LocationModel>
+    @GET("api/location/{id}")
+    fun fetchLocationId(
+        @Path("id") id: Int
+    ): Call<LocationModel>
 }

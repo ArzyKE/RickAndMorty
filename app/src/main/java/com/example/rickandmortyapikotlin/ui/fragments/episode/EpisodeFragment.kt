@@ -4,20 +4,20 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.rickandmortyapikotlin.R
 import com.example.rickandmortyapikotlin.databinding.FragmentEpisodeBinding
 import com.example.rickandmortyapikotlin.ui.adapters.EpisodeAdapter
-import com.example.rickandmortyapikotlin.ui.fragments.character.CharacterViewModel
 
 class EpisodeFragment : Fragment(R.layout.fragment_episode) {
 
     private val binding by viewBinding(FragmentEpisodeBinding::bind)
-    private val viewModel : EpisodeViewModel by activityViewModels()
-    private val episodeAdapter = EpisodeAdapter()
-
+    private val viewModel: EpisodeViewModel by activityViewModels()
+    private val episodeAdapter = EpisodeAdapter(
+        this::onItemClick
+    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,7 +35,16 @@ class EpisodeFragment : Fragment(R.layout.fragment_episode) {
             episodeAdapter.submitList(episode.results)
         }
     }
+
+    private fun onItemClick(id: Int) {
+        findNavController().navigate(
+            EpisodeFragmentDirections.actionEpisodeFragmentToEpisodeDetailFragment(
+                position = id
+            )
+        )
+    }
 }
+
 
 
 

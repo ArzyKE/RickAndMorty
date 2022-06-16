@@ -1,7 +1,6 @@
 package com.example.rickandmortyapikotlin.ui.adapters
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,9 +8,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmortyapikotlin.databinding.ItemLocationBinding
 import com.example.rickandmortyapikotlin.model.LocationModel
-import kotlin.math.log
 
-class LocationAdapter : ListAdapter<LocationModel, LocationAdapter.ViewHolder>(diffCallback) {
+class LocationAdapter(
+
+    private val itemClick: (id: Int) -> Unit
+
+) : ListAdapter<LocationModel, LocationAdapter.ViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -26,8 +28,17 @@ class LocationAdapter : ListAdapter<LocationModel, LocationAdapter.ViewHolder>(d
         holder.onBind(getItem(position))
     }
 
-    class ViewHolder(private val binding: ItemLocationBinding) :
+    inner class ViewHolder(private val binding: ItemLocationBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                getItem(absoluteAdapterPosition).apply {
+                    itemClick(id)
+                }
+            }
+        }
+
         fun onBind(item: LocationModel?) {
             binding.itemLocationName.text = item?.name
         }

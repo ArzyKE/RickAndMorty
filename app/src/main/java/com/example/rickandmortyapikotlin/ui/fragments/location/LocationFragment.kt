@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.rickandmortyapikotlin.R
@@ -14,7 +15,9 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
 
     private val binding by viewBinding(FragmentLocationBinding::bind)
     private val viewModel: LocationViewModel by activityViewModels()
-    private val locationAdapter = LocationAdapter()
+    private val locationAdapter = LocationAdapter(
+        this::onItemClick
+    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,5 +34,13 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
         viewModel.fetchLocation().observe(viewLifecycleOwner) { location ->
             locationAdapter.submitList(location.results)
         }
+    }
+
+    private fun onItemClick(id: Int) {
+        findNavController().navigate(
+            LocationFragmentDirections.actionLocationFragmentToLocationDetailFragment(
+                position = id
+            )
+        )
     }
 }
