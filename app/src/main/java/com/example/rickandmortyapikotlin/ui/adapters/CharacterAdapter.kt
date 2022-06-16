@@ -11,9 +11,7 @@ import com.example.rickandmortyapikotlin.databinding.ItemCharacterBinding
 import com.example.rickandmortyapikotlin.model.CharacterModel
 
 class CharacterAdapter(
-
     private val itemClick: (id: Int) -> Unit
-
 ) : ListAdapter<CharacterModel, CharacterAdapter.ViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

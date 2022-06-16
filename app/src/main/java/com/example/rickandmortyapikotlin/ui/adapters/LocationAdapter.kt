@@ -10,9 +10,7 @@ import com.example.rickandmortyapikotlin.databinding.ItemLocationBinding
 import com.example.rickandmortyapikotlin.model.LocationModel
 
 class LocationAdapter(
-
     private val itemClick: (id: Int) -> Unit
-
 ) : ListAdapter<LocationModel, LocationAdapter.ViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

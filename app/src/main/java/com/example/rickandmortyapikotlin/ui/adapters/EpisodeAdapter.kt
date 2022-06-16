@@ -10,9 +10,7 @@ import com.example.rickandmortyapikotlin.databinding.ItemEpisodeBinding
 import com.example.rickandmortyapikotlin.model.EpisodeModel
 
 class EpisodeAdapter(
-
     private val itemClick: (id: Int) -> Unit
-
 ) : ListAdapter<EpisodeModel, EpisodeAdapter.ViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

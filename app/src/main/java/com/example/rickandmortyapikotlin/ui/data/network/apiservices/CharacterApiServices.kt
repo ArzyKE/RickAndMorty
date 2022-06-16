@@ -7,6 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface CharacterApiServices {
+
     @GET("api/character")
     fun fetchCharacters(): Call<RickyMortyResponse<CharacterModel>>
 

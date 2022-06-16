@@ -1,4 +1,4 @@
-package com.example.rickandmortyapikotlin.ui.fragments.episode.Detail
+package com.example.rickandmortyapikotlin.ui.fragments.episode.detail
 
 import android.os.Bundle
 import android.view.View
