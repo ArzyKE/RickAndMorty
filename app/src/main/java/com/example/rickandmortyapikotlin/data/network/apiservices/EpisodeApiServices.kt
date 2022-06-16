@@ -1,4 +1,4 @@
-package com.example.rickandmortyapikotlin.ui.data.network.apiservices
+package com.example.rickandmortyapikotlin.data.network.apiservices
 
 import com.example.rickandmortyapikotlin.model.EpisodeModel
 import com.example.rickandmortyapikotlin.model.RickyMortyResponse

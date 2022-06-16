@@ -1,8 +1,7 @@
-package com.example.rickandmortyapikotlin.ui.data.network.apiservices
+package com.example.rickandmortyapikotlin.data.network.apiservices
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 class RetrofitClient {
 

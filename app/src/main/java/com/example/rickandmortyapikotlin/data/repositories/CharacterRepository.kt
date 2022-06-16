@@ -1,4 +1,4 @@
-package com.example.rickandmortyapikotlin.ui.data.repositories
+package com.example.rickandmortyapikotlin.data.repositories
 
 import androidx.lifecycle.MutableLiveData
 import com.example.rickandmortyapikotlin.App

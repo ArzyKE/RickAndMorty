@@ -1,10 +1,10 @@
 package com.example.rickandmortyapikotlin
 
 import android.app.Application
-import com.example.rickandmortyapikotlin.ui.data.network.apiservices.CharacterApiServices
-import com.example.rickandmortyapikotlin.ui.data.network.apiservices.EpisodeApiServices
-import com.example.rickandmortyapikotlin.ui.data.network.apiservices.LocationApiServices
-import com.example.rickandmortyapikotlin.ui.data.network.apiservices.RetrofitClient
+import com.example.rickandmortyapikotlin.data.network.apiservices.CharacterApiServices
+import com.example.rickandmortyapikotlin.data.network.apiservices.EpisodeApiServices
+import com.example.rickandmortyapikotlin.data.network.apiservices.LocationApiServices
+import com.example.rickandmortyapikotlin.data.network.apiservices.RetrofitClient
 
 class App : Application() {
 

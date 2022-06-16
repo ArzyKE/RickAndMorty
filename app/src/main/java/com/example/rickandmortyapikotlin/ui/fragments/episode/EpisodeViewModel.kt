@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rickandmortyapikotlin.model.EpisodeModel
 import com.example.rickandmortyapikotlin.model.RickyMortyResponse
-import com.example.rickandmortyapikotlin.ui.data.repositories.EpisodeRepository
+import com.example.rickandmortyapikotlin.data.repositories.EpisodeRepository
 
 class EpisodeViewModel : ViewModel() {
 
