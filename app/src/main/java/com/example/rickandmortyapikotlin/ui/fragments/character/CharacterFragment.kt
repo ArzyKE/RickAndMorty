@@ -1,21 +1,22 @@
 package com.example.rickandmortyapikotlin.ui.fragments.character
 
-import android.icu.text.Transliterator
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.rickandmortyapikotlin.R
 import com.example.rickandmortyapikotlin.databinding.FragmentCharacterBinding
 import com.example.rickandmortyapikotlin.ui.adapters.CharacterAdapter
+import kotlinx.coroutines.launch
 
 class CharacterFragment : Fragment(R.layout.fragment_character) {
 
     private val binding by viewBinding(FragmentCharacterBinding::bind)
-    private val viewModel: CharacterViewModel by activityViewModels()
+    private val viewModel: CharacterViewModel by viewModels()
     private val characterAdapter = CharacterAdapter(
         this::onItemClick
     )
@@ -32,8 +33,10 @@ class CharacterFragment : Fragment(R.layout.fragment_character) {
     }
 
     private fun setupObserve() {
-        viewModel.fetchCharacters().observe(viewLifecycleOwner) { character ->
-            characterAdapter.submitList(character.results)
+        viewModel.fetchCharacters().observe(viewLifecycleOwner) {
+            lifecycleScope.launch {
+                characterAdapter.submitData(it)
+            }
         }
     }
 

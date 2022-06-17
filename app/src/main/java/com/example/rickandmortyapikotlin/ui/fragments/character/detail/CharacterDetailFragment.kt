@@ -9,12 +9,11 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.example.rickandmortyapikotlin.R
 import com.example.rickandmortyapikotlin.databinding.FragmentCharacterDetailBinding
-import com.example.rickandmortyapikotlin.ui.fragments.character.CharacterViewModel
 
 class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
 
     private val viewBinding by viewBinding(FragmentCharacterDetailBinding::bind)
-    private val viewModel: CharacterViewModel by viewModels()
+    private val viewModel: CharacterDetailViewModel by viewModels()
     private val args by navArgs<CharacterDetailFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

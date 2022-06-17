@@ -14,5 +14,9 @@ data class Info(
     val next: String,
 
     @SerializedName("prev")
-    val prev: String
+    val prev: String,
+
+    @SerializedName("page")
+    val page: Int
+
 )

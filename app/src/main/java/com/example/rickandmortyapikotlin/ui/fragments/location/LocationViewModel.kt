@@ -1,16 +1,18 @@
 package com.example.rickandmortyapikotlin.ui.fragments.location
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.paging.PagingData
+import com.example.rickandmortyapikotlin.data.repositories.LocationRepository
 import com.example.rickandmortyapikotlin.model.LocationModel
 import com.example.rickandmortyapikotlin.model.RickyMortyResponse
-import com.example.rickandmortyapikotlin.data.repositories.LocationRepository
 
 class LocationViewModel : ViewModel() {
 
     private val repository = LocationRepository()
 
-    fun fetchLocation(): MutableLiveData<RickyMortyResponse<LocationModel>> {
+    fun fetchLocation(): LiveData<PagingData<LocationModel>> {
         return repository.fetchLocation()
     }
 

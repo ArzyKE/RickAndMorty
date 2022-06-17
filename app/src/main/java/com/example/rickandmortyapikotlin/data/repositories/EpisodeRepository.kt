@@ -1,38 +1,33 @@
 package com.example.rickandmortyapikotlin.data.repositories
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.example.rickandmortyapikotlin.App
+import com.example.rickandmortyapikotlin.data.repositories.pagingsourse.EpisodePagingSource
 import com.example.rickandmortyapikotlin.model.EpisodeModel
-import com.example.rickandmortyapikotlin.model.RickyMortyResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class EpisodeRepository {
 
-    val data: MutableLiveData<RickyMortyResponse<EpisodeModel>> = MutableLiveData()
-
-    fun fetchEpisode(): MutableLiveData<RickyMortyResponse<EpisodeModel>> {
-        val data: MutableLiveData<RickyMortyResponse<EpisodeModel>> = MutableLiveData()
-        App.episodeApiServices?.fetchEpisode()
-            ?.enqueue(object : Callback<RickyMortyResponse<EpisodeModel>> {
-                override fun onResponse(
-                    call: Call<RickyMortyResponse<EpisodeModel>>,
-                    response: Response<RickyMortyResponse<EpisodeModel>>
-                ) {
-                    if (response.body() != null)
-                        data.value = response.body()
-                }
-
-                override fun onFailure(
-                    call: Call<RickyMortyResponse<EpisodeModel>>,
-                    t: Throwable
-                ) {
-                    data.value = null
-                }
-            })
-        return data
+    fun fetchEpisode(): LiveData<PagingData<EpisodeModel>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false,
+                initialLoadSize = 2
+            ),
+            pagingSourceFactory = {
+                EpisodePagingSource(App.episodeApiServices!!)
+            }, initialKey = 1
+        ).liveData
     }
+
 
     fun fetchEpisodeId(id: Int): MutableLiveData<EpisodeModel> {
         val data: MutableLiveData<EpisodeModel> = MutableLiveData()

@@ -3,8 +3,8 @@ package com.example.rickandmortyapikotlin.ui.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rickandmortyapikotlin.databinding.ItemCharacterBinding
@@ -12,7 +12,7 @@ import com.example.rickandmortyapikotlin.model.CharacterModel
 
 class CharacterAdapter(
     private val itemClick: (id: Int) -> Unit
-) : ListAdapter<CharacterModel, CharacterAdapter.ViewHolder>(diffCallback) {
+) : PagingDataAdapter<CharacterModel, CharacterAdapter.ViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -35,7 +35,7 @@ class CharacterAdapter(
 
         init {
             itemView.setOnClickListener {
-                getItem(absoluteAdapterPosition).apply {
+                getItem(absoluteAdapterPosition)?.apply {
                     itemClick(id)
                 }
             }
@@ -50,8 +50,8 @@ class CharacterAdapter(
 
     companion object {
 
-        private val diffCallback: DiffUtil.ItemCallback<CharacterModel?> =
-            object : DiffUtil.ItemCallback<CharacterModel?>() {
+        private val diffCallback: DiffUtil.ItemCallback<CharacterModel> =
+            object : DiffUtil.ItemCallback<CharacterModel>() {
                 override fun areItemsTheSame(
                     oldItem: CharacterModel,
                     newItem: CharacterModel

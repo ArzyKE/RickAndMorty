@@ -5,11 +5,14 @@ import com.example.rickandmortyapikotlin.model.RickyMortyResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface CharacterApiServices {
 
     @GET("api/character")
-    fun fetchCharacters(): Call<RickyMortyResponse<CharacterModel>>
+    suspend fun fetchCharacters(
+        @Query("page") page: Int
+    ): RickyMortyResponse<CharacterModel>?
 
     @GET("api/character/{id}")
     fun fetchCharacterId(

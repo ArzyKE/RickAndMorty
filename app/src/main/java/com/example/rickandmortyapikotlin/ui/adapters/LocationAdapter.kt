@@ -3,15 +3,15 @@ package com.example.rickandmortyapikotlin.ui.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmortyapikotlin.databinding.ItemLocationBinding
 import com.example.rickandmortyapikotlin.model.LocationModel
 
 class LocationAdapter(
     private val itemClick: (id: Int) -> Unit
-) : ListAdapter<LocationModel, LocationAdapter.ViewHolder>(diffCallback) {
+) : PagingDataAdapter<LocationModel, LocationAdapter.ViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -31,7 +31,7 @@ class LocationAdapter(
 
         init {
             binding.root.setOnClickListener {
-                getItem(absoluteAdapterPosition).apply {
+                getItem(absoluteAdapterPosition)?.apply {
                     itemClick(id)
                 }
             }
@@ -43,8 +43,8 @@ class LocationAdapter(
     }
 
     companion object {
-        private val diffCallback: DiffUtil.ItemCallback<LocationModel?> =
-            object : DiffUtil.ItemCallback<LocationModel?>() {
+        private val diffCallback: DiffUtil.ItemCallback<LocationModel> =
+            object : DiffUtil.ItemCallback<LocationModel>() {
                 override fun areItemsTheSame(
                     oldItem: LocationModel,
                     newItem: LocationModel
