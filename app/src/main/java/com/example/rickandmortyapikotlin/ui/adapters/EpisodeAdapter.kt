@@ -3,15 +3,15 @@ package com.example.rickandmortyapikotlin.ui.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmortyapikotlin.databinding.ItemEpisodeBinding
 import com.example.rickandmortyapikotlin.model.EpisodeModel
 
 class EpisodeAdapter(
     private val itemClick: (id: Int) -> Unit
-) : PagingDataAdapter<EpisodeModel, EpisodeAdapter.ViewHolder>(diffCallback) {
+) : ListAdapter<EpisodeModel, EpisodeAdapter.ViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(

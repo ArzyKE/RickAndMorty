@@ -1,17 +1,18 @@
 package com.example.rickandmortyapikotlin.ui.fragments.character
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.rickandmortyapikotlin.R
 import com.example.rickandmortyapikotlin.databinding.FragmentCharacterBinding
 import com.example.rickandmortyapikotlin.ui.adapters.CharacterAdapter
-import kotlinx.coroutines.launch
 
 class CharacterFragment : Fragment(R.layout.fragment_character) {
 
@@ -33,11 +34,20 @@ class CharacterFragment : Fragment(R.layout.fragment_character) {
     }
 
     private fun setupObserve() {
-        viewModel.fetchCharacters().observe(viewLifecycleOwner) {
-            lifecycleScope.launch {
-                characterAdapter.submitData(it)
+        if (isNetwork()) {
+            viewModel.fetchCharacters().observe(viewLifecycleOwner) {
+                characterAdapter.submitList(it.results)
             }
+        } else {
+            characterAdapter.submitList(viewModel.getCharacters())
         }
+    }
+
+    private fun isNetwork(): Boolean {
+        val connectivityManager: ConnectivityManager =
+            context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
     }
 
     private fun onItemClick(id: Int) {

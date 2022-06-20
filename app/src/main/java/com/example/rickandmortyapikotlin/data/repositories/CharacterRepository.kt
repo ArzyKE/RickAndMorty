@@ -1,31 +1,47 @@
 package com.example.rickandmortyapikotlin.data.repositories
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.liveData
 import com.example.rickandmortyapikotlin.App
-import com.example.rickandmortyapikotlin.data.repositories.pagingsourse.CharacterPagingSource
 import com.example.rickandmortyapikotlin.model.CharacterModel
+import com.example.rickandmortyapikotlin.model.RickyMortyResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class CharacterRepository {
-    fun fetchCharacters(): LiveData<PagingData<CharacterModel>> {
-        return Pager(
-            config = PagingConfig(
-                pageSize = 10,
-                enablePlaceholders = false,
-                initialLoadSize = 2
-            ),
-            pagingSourceFactory = {
-                CharacterPagingSource(App.characterApiServices!!)
-            }, initialKey = 1
-        ).liveData
+
+    val data: MutableLiveData<RickyMortyResponse<CharacterModel>> = MutableLiveData()
+
+    fun fetchCharacters(): MutableLiveData<RickyMortyResponse<CharacterModel>> {
+        App.characterApiServices?.fetchCharacters()
+            ?.enqueue(object : Callback<RickyMortyResponse<CharacterModel>> {
+                override fun onResponse(
+                    call: Call<RickyMortyResponse<CharacterModel>>,
+                    response: Response<RickyMortyResponse<CharacterModel>>
+                ) {
+                    if (response.body() != null) {
+                        App.characterDao?.insertAll(response.body()!!.results)
+                        data.value = response.body()
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<RickyMortyResponse<CharacterModel>>,
+                    t: Throwable
+                ) {
+                    data.value = null
+                }
+
+            })
+        return data
     }
+
+    fun getCharacters(): ArrayList<CharacterModel> {
+        val list: ArrayList<CharacterModel> = ArrayList()
+        App.characterDao?.let { list.addAll(it.getAll()) }
+        return list
+    }
+
 
     fun fetchCharacterId(id: Int): MutableLiveData<CharacterModel> {
         val data: MutableLiveData<CharacterModel> = MutableLiveData()

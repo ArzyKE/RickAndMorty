@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rickandmortyapikotlin.databinding.ItemCharacterBinding
@@ -12,7 +13,7 @@ import com.example.rickandmortyapikotlin.model.CharacterModel
 
 class CharacterAdapter(
     private val itemClick: (id: Int) -> Unit
-) : PagingDataAdapter<CharacterModel, CharacterAdapter.ViewHolder>(diffCallback) {
+) : ListAdapter<CharacterModel, CharacterAdapter.ViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -34,7 +35,7 @@ class CharacterAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            itemView.setOnClickListener {
+            binding.root.setOnClickListener {
                 getItem(absoluteAdapterPosition)?.apply {
                     itemClick(id)
                 }

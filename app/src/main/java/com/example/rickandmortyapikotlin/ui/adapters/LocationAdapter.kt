@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmortyapikotlin.databinding.ItemLocationBinding
 import com.example.rickandmortyapikotlin.model.LocationModel
 
 class LocationAdapter(
     private val itemClick: (id: Int) -> Unit
-) : PagingDataAdapter<LocationModel, LocationAdapter.ViewHolder>(diffCallback) {
+) : ListAdapter<LocationModel, LocationAdapter.ViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
