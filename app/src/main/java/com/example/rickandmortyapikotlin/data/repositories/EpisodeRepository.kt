@@ -25,7 +25,6 @@ class EpisodeRepository {
                 override fun onFailure(call: Call<RickyMortyResponse<EpisodeModel>>, t: Throwable) {
                     data.value = null
                 }
-
             })
         return data
     }

@@ -19,8 +19,7 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
     private val binding by viewBinding(FragmentLocationBinding::bind)
     private val viewModel: LocationViewModel by viewModels()
     private val locationAdapter = LocationAdapter(
-        this::onItemClick
-    )
+        this::onItemClick)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,7 +41,6 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
             locationAdapter.submitList(viewModel.getLocation())
         }
     }
-
 
     private fun isNetwork(): Boolean {
         val connectivityManager: ConnectivityManager =

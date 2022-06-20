@@ -11,7 +11,6 @@ import com.example.rickandmortyapikotlin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-
     lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 

@@ -10,7 +10,6 @@ class EpisodeViewModel : ViewModel() {
 
     private val repository = EpisodeRepository()
 
-
     fun fetchEpisode(): MutableLiveData<RickyMortyResponse<EpisodeModel>> {
         return repository.fetchEpisode()
     }
@@ -18,8 +17,4 @@ class EpisodeViewModel : ViewModel() {
     fun getEpisode(): ArrayList<EpisodeModel> {
         return repository.getEpisode()
     }
-
-//    fun fetchEpisodeId(position: Int): MutableLiveData<EpisodeModel> {
-//        return repository.fetchEpisodeId(position)
-//    }
 }

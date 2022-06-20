@@ -28,7 +28,6 @@ class LocationRepository {
                 ) {
                     data.value = null
                 }
-
             })
         return data
     }
@@ -39,7 +38,6 @@ class LocationRepository {
         return list
 
     }
-
 
     fun fetchLocationId(id: Int): MutableLiveData<LocationModel> {
         val data: MutableLiveData<LocationModel> = MutableLiveData()

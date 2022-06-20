@@ -9,7 +9,6 @@ class EpisodeDetailViewModel : ViewModel() {
 
     val repository: EpisodeRepository = EpisodeRepository()
 
-
     fun fetchEpisodeId(position: Int): MutableLiveData<EpisodeModel> {
         return repository.fetchEpisodeId(position)
     }

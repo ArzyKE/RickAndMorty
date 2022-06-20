@@ -11,10 +11,7 @@ import com.example.rickandmortyapikotlin.model.EpisodeModel
 import com.example.rickandmortyapikotlin.model.LocationModel
 import com.example.rickandmortyapikotlin.utils.CharacterConverter
 
-@Database(
-    entities = [CharacterModel::class, EpisodeModel::class, LocationModel::class],
-    version = 4
-)
+@Database(entities = [CharacterModel::class, EpisodeModel::class, LocationModel::class], version = 4)
 @TypeConverters(CharacterConverter::class)
 abstract class AppDataBase : RoomDatabase() {
 

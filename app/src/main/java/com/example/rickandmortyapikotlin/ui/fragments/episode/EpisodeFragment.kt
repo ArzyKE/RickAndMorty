@@ -19,8 +19,7 @@ class EpisodeFragment : Fragment(R.layout.fragment_episode) {
     private val binding by viewBinding(FragmentEpisodeBinding::bind)
     private val viewModel: EpisodeViewModel by viewModels()
     private val episodeAdapter = EpisodeAdapter(
-        this::onItemClick
-    )
+        this::onItemClick)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -27,8 +27,8 @@ class LocationAdapter(
         holder.onBind(getItem(position))
     }
 
-    inner class ViewHolder(private val binding: ItemLocationBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemLocationBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.root.setOnClickListener {

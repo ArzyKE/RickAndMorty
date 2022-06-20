@@ -29,8 +29,7 @@ class EpisodeAdapter(
 
     inner class ViewHolder(
         private val binding: ItemEpisodeBinding
-    ) :
-        RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.root.setOnClickListener {

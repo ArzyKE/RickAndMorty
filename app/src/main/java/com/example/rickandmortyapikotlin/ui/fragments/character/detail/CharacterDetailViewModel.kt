@@ -9,7 +9,6 @@ class CharacterDetailViewModel : ViewModel() {
 
     val repository: CharacterRepository = CharacterRepository()
 
-
     fun fetchCharactersId(position: Int): MutableLiveData<CharacterModel> {
         return repository.fetchCharacterId(position)
     }

@@ -31,7 +31,6 @@ class CharacterRepository {
                 ) {
                     data.value = null
                 }
-
             })
         return data
     }
@@ -41,7 +40,6 @@ class CharacterRepository {
         App.characterDao?.let { list.addAll(it.getAll()) }
         return list
     }
-
 
     fun fetchCharacterId(id: Int): MutableLiveData<CharacterModel> {
         val data: MutableLiveData<CharacterModel> = MutableLiveData()

@@ -10,7 +10,6 @@ class LocationViewModel : ViewModel() {
 
     private val repository = LocationRepository()
 
-
     fun fetchLocation(): MutableLiveData<RickyMortyResponse<LocationModel>> {
         return repository.fetchLocation()
     }
@@ -19,7 +18,3 @@ class LocationViewModel : ViewModel() {
         return repository.getLocation()
     }
 }
-//
-//fun fetchLocationId(position: Int): MutableLiveData<LocationModel> {
-//    return repository.fetchLocationId(position)
-

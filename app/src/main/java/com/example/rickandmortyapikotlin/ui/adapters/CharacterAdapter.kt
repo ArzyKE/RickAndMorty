@@ -31,8 +31,7 @@ class CharacterAdapter(
 
     inner class ViewHolder(
         private val binding: ItemCharacterBinding
-    ) :
-        RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.root.setOnClickListener {

@@ -19,8 +19,7 @@ class CharacterFragment : Fragment(R.layout.fragment_character) {
     private val binding by viewBinding(FragmentCharacterBinding::bind)
     private val viewModel: CharacterViewModel by viewModels()
     private val characterAdapter = CharacterAdapter(
-        this::onItemClick
-    )
+        this::onItemClick)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
