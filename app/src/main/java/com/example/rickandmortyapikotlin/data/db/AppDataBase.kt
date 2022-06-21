@@ -15,8 +15,8 @@ import com.example.rickandmortyapikotlin.utils.CharacterConverter
 @TypeConverters(CharacterConverter::class)
 abstract class AppDataBase : RoomDatabase() {
 
-    abstract fun CharacterDao(): CharacterDao
-    abstract fun EpisodeDao(): EpisodeDao
-    abstract fun LocationDao(): LocationDao
+    abstract fun characterDao(): CharacterDao
+    abstract fun episodeDao(): EpisodeDao
+    abstract fun locationDao(): LocationDao
 
 }

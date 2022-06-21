@@ -8,7 +8,7 @@ import com.example.rickandmortyapikotlin.data.db.daos.LocationDao
 import com.example.rickandmortyapikotlin.data.network.apiservices.CharacterApiServices
 import com.example.rickandmortyapikotlin.data.network.apiservices.EpisodeApiServices
 import com.example.rickandmortyapikotlin.data.network.apiservices.LocationApiServices
-import com.example.rickandmortyapikotlin.data.network.apiservices.RetrofitClient
+import com.example.rickandmortyapikotlin.data.network.retrofit.RetrofitClient
 
 class App : Application() {
 

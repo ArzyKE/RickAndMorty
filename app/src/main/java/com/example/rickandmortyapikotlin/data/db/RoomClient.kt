@@ -5,7 +5,6 @@ import androidx.room.Room
 import com.example.rickandmortyapikotlin.data.db.daos.CharacterDao
 import com.example.rickandmortyapikotlin.data.db.daos.EpisodeDao
 import com.example.rickandmortyapikotlin.data.db.daos.LocationDao
-import com.example.rickandmortyapikotlin.utils.CharacterConverter
 
 class RoomClient {
 
@@ -19,14 +18,14 @@ class RoomClient {
     }
 
     fun provideCharacterDao(appDataBase: AppDataBase): CharacterDao {
-        return appDataBase.CharacterDao()
+        return appDataBase.characterDao()
     }
 
     fun provideEpisodeDao(appDataBase: AppDataBase): EpisodeDao {
-        return appDataBase.EpisodeDao()
+        return appDataBase.episodeDao()
     }
 
     fun provideLocationDao(appDataBase: AppDataBase): LocationDao {
-        return appDataBase.LocationDao()
+        return appDataBase.locationDao()
     }
 }
